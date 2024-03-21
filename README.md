@@ -1,6 +1,6 @@
 # transpiler
 
-An little expression transpiler. It is capable of generating:
+A little expression transpiler. It is capable of generating:
 - value literals (ints, strings, booleans) and variables
 - lists
 - lambda expressions and function applications
