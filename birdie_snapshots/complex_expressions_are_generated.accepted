@@ -1,0 +1,24 @@
+---
+version: 1.1.0
+title: complex expressions are generated
+file: ./test/codegen_test.gleam
+test_name: everything_test
+---
+(() => {
+  const map = (list, fn) => (() => {
+      const $ = list;
+      if (Array.isArray($) && $.length == 0) {
+        return [];
+      }
+      if (Array.isArray($) && $.length >= 1) {
+        const x = $[0];
+        const xs = $.slice(1);
+        return cons(fn(x), map(xs, fn));
+      }
+      throw new Error('Non-exhastive match clauses');
+    })();
+  return (() => {
+    const doubles = map([1, 2, 3], (x) => x * 2);
+    return println(doubles);
+  })();
+})()

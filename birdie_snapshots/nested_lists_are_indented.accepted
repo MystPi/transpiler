@@ -1,0 +1,20 @@
+---
+version: 1.1.0
+title: nested lists are indented
+file: ./test/codegen_test.gleam
+test_name: nested_lists_test
+---
+[
+  [
+    ["foo", "bar", "baz"],
+    ["foo", "bar", "baz"],
+    ["foo", "bar", "baz"],
+    ["foo", "bar", "baz"],
+  ],
+  [
+    ["foo", "bar", "baz"],
+    ["foo", "bar", "baz"],
+    ["foo", "bar", "baz"],
+    ["foo", "bar", "baz"],
+  ],
+]

@@ -1,0 +1,7 @@
+---
+version: 1.1.0
+title: literal values are generated
+file: ./test/codegen_test.gleam
+test_name: literals_test
+---
+[42, "I said\n\t\"hello\"", foobar, true, false]

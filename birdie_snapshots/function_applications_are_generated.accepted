@@ -1,0 +1,12 @@
+---
+version: 1.1.0
+title: function applications are generated
+file: ./test/codegen_test.gleam
+test_name: apply_test
+---
+foo(
+  ["foo", "bar", "baz"],
+  ["foo", "bar", "baz"],
+  ["foo", "bar", "baz"],
+  ["foo", "bar", "baz"],
+)
