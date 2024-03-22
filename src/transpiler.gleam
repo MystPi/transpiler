@@ -72,7 +72,8 @@ fn binop_to_doc(op: String, left: Expression, right: Expression) -> Document {
 /// (() => {        // IIFE
 ///   const x = 5;  // const definition
 ///   return x * 2; // the body is returned
-/// })
+/// })()
+/// ```
 ///
 fn let_to_doc(name: String, value: Expression, body: Expression) -> Document {
   doc.concat([
@@ -129,7 +130,7 @@ fn lambda_to_doc(parameters: List(String), body: Expression) -> Document {
 /// (() => {
 ///   // clauses...
 ///   throw new Error(..);
-/// })
+/// })()
 /// ```
 ///
 fn match_to_doc(
