@@ -18,6 +18,7 @@ pub type Expression {
   EBool(value: Bool)
   EList(List(Expression))
   EBinop(op: String, left: Expression, right: Expression)
+  ECons(prefix: Expression, list: Expression)
   EMatch(subject: Expression, clauses: List(#(Pattern, Expression)))
 }
 
@@ -41,6 +42,7 @@ fn expression_to_doc(expression: Expression) -> Document {
     EVariable(v) -> doc.from_string(v)
     EList(items) -> list_to_doc(items)
     EBinop(op, left, right) -> binop_to_doc(op, left, right)
+    ECons(prefix, list) -> cons_to_doc(prefix, list)
     ELet(name, value, body) -> let_to_doc(name, value, body)
     EApply(function, args) -> apply_to_doc(function, args)
     ELambda(parameters, body) -> lambda_to_doc(parameters, body)
@@ -54,6 +56,23 @@ fn list_to_doc(items: List(Expression)) -> Document {
   items
   |> list.map(expression_to_doc)
   |> doc.concat_join([doc.from_string(","), doc.space])
+  |> wrap("[", "]", trailing: ",")
+}
+
+/// The cons operator is generated as an array spread with the prefixed value
+/// coming first in the array.
+/// ```
+/// [prefix, ...list]
+/// ```
+///
+fn cons_to_doc(prefix: Expression, list: Expression) -> Document {
+  doc.concat([
+    expression_to_doc(prefix),
+    doc.from_string(","),
+    doc.space,
+    doc.from_string("..."),
+    expression_to_doc(list),
+  ])
   |> wrap("[", "]", trailing: ",")
 }
 

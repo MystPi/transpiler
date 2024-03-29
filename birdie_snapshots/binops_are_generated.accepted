@@ -1,7 +1,7 @@
 ---
 version: 1.1.0
 title: binops are generated
-file: ./test/codegen_test.gleam
+file: ./test/transpiler_test.gleam
 test_name: binops_test
 ---
-3 * 7 + 8
+[3 * 7 + 8, ...[1, 2, 3]]

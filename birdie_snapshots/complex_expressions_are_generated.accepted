@@ -1,7 +1,7 @@
 ---
 version: 1.1.0
 title: complex expressions are generated
-file: ./test/codegen_test.gleam
+file: ./test/transpiler_test.gleam
 test_name: everything_test
 ---
 (() => {
@@ -13,7 +13,7 @@ test_name: everything_test
       if (Array.isArray($) && $.length >= 1) {
         const x = $[0];
         const xs = $.slice(1);
-        return cons(fn(x), map(xs, fn));
+        return [fn(x), ...map(xs, fn)];
       }
       throw new Error('Non-exhastive match clauses');
     })();

@@ -31,7 +31,10 @@ pub fn nested_lists_test() {
 }
 
 pub fn binops_test() {
-  t.EBinop("+", t.EBinop("*", t.EInt(3), t.EInt(7)), t.EInt(8))
+  t.ECons(
+    t.EBinop("+", t.EBinop("*", t.EInt(3), t.EInt(7)), t.EInt(8)),
+    t.EList([t.EInt(1), t.EInt(2), t.EInt(3)]),
+  )
   |> t.expression_to_string
   |> birdie.snap("binops are generated")
 }
@@ -98,10 +101,10 @@ pub fn everything_test() {
         #(p.PList([]), t.EList([])),
         #(
           p.PListTail([p.PVariable("x")], "xs"),
-          t.EApply(t.EVariable("cons"), [
+          t.ECons(
             t.EApply(t.EVariable("fn"), [t.EVariable("x")]),
             t.EApply(t.EVariable("map"), [t.EVariable("xs"), t.EVariable("fn")]),
-          ]),
+          ),
         ),
       ]),
     ),
