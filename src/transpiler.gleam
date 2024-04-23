@@ -287,6 +287,7 @@ fn wrap_with_iife(inner: Document) -> Document {
   |> doc.prepend_docs([doc.from_string("(() => {"), doc.line])
   |> doc.nest(by: 2)
   |> doc.append_docs([doc.line, doc.from_string("})()")])
+  |> doc.force_break
 }
 
 /// Wrap a document with the given left and right strings (such as `[` and `]`)

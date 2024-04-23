@@ -5,7 +5,8 @@ file: ./test/transpiler_test.gleam
 test_name: everything_test
 ---
 (() => {
-  const map = (list, fn) => (() => {
+  const map = (list, fn) =>
+    (() => {
       const $ = list;
       if (Array.isArray($) && $.length == 0) {
         return [];
